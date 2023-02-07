@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "frontend": "cd frontend && npm start",
+    "backend": "nodemon server.js",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "slug": "^8.2.2"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   },
   "engines": {
