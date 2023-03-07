@@ -1,15 +1,61 @@
+import React, { useState } from 'react';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
+import { save } from '../services/Sheet';
 
 export default function Contact() {
+
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [message, setMessage] = useState('');
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+
+	const contactHandler = async (e) => {
+		e.preventDefault();
+		const data = {
+			Nome: name,
+			Email: email,
+			Mensagem: message,
+			Data: new Date()
+		};
+		const result = await save(data);
+		setSuccess(result);
+		setError(!result);
+		if (result) {
+			resetForm();
+		}
+	}
+
+	const resetForm = () => {
+		setName('');
+		setEmail('');
+		setMessage('');
+	}
 
 	return (
 		<div>
 			<h1>Entre em contato!</h1>
-			<form>
-				<input type="text" placeholder="Nome" required />
-				<input type="email" placeholder="E-mail" required />
-				<textarea rows="5"></textarea>
+			<form onSubmit={contactHandler}>
+				<input 
+					type="text" 
+					placeholder="Nome" 
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+				/>
+				<input 
+					type="email" 
+					placeholder="E-mail"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
+				<textarea 
+					rows="5" 
+					value={message} 
+					onChange={(e) => setMessage(e.target.value)} 
+				></textarea>
 				<input type="submit" value="Enviar" />
+				{success && <h4>Mensagem enviada com sucesso!</h4>}
+				{error && <h4>Ocorreu um erro. Por favor, envie novamente.</h4>}
 			</form>
 			<div>
 				<FaGithubSquare />

@@ -1,0 +1,1 @@
+http post localhost:8080/api/portfolio title="Projeto JS" description="Um projeto FullStack JavaScript" text="MERN Stack" image="https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg" technologies=[{label: "node", icon="FaNodeJs", iconType="fa"}]

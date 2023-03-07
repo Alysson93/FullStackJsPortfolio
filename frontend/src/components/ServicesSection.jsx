@@ -5,7 +5,7 @@ export default function ServicesSection() {
 	return (
 
 		<section>
-			<div className="center section flex flex-between">
+			<div>
 				<div>
 					<div>
 						<FaLaptopCode />

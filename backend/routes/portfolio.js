@@ -6,7 +6,9 @@ const Portfolio = require('../models/Portfolio');
 router.post('/', (req, res) => {
 	const portfolio = new Portfolio({
 		title: req.body.title,
-		description: req.body.description
+		description: req.body.description,
+		text: req.body.text,
+		image: req.body.image
 	});
 	portfolio.save().then((data) => {
 		res.status(201).json({
@@ -61,11 +63,13 @@ router.patch('/:slug', async (req, res) => {
 			slug: req.params.slug
 		},{
 			title: req.body.title,
-			description: req.body.description
+			description: req.body.description,
+			text: req.body.text,
+			image: req.body.image
 		});
 		res.json({
 			success: true,
-			portfolio: portfolio.modifiedCount
+			portfolio
 		});
 	} catch(err) {
 		res.json({
