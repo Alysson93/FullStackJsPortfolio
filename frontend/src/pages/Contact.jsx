@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { save } from '../services/Sheet';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../animation';
+import ScrollTop from '../components/ScrollTop';
 
 export default function Contact() {
 
@@ -33,7 +36,12 @@ export default function Contact() {
 	}
 
 	return (
-		<div>
+		<motion.div 
+			initial='hidden'
+			animate='show'
+			exit='exit'
+			variants={pageAnimation}
+		>
 			<h1>Entre em contato!</h1>
 			<form onSubmit={contactHandler}>
 				<input 
@@ -63,7 +71,8 @@ export default function Contact() {
 				<FaLinkedin />
 				<h3>linkedin</h3>
 			</div>
-		</div>
+			<ScrollTop />
+		</motion.div>
 	);
 
 }
